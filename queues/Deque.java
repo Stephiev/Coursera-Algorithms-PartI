@@ -123,13 +123,23 @@ public class Deque<Item> implements Iterable<Item> {
     // remove and return the item from the end
     public Item removeLast() {
         // same as remove in a queue
-        Item item = first.item;
-        first = first.next;
-        if (isEmpty())  last = null;
-
+      System.out.print("Calling removeLast (same as remove in a queue).");
+      if (isEmpty()) throw new NoSuchElementException("Stack underflow");
+        
+      Item item = last.item;  // save item to return
+      if (size() == 1) {
+         first = null;
+         last = null;
+      } else {
+       last = last.previous;    // Set current last to second to last
+       last.next = null; // set new lasts next to null
+      }
+      n--;
+       System.out.println(" Removed " + item.toString() + " from the END of the deque");
+//      System.out.println("'first' is now " + first.item.toString() + " and last is " + last.item.toString());
+       
         return item;
-//      Item item = first.item;
-//      return item;
+
     }                 
     
     // Iteratables have a method that returns an iterator 
@@ -163,14 +173,17 @@ public class Deque<Item> implements Iterable<Item> {
     
     public static void main(String[] args) {
         Deque<Integer> testDeque = new Deque<Integer>();
-//        testDeque.addFirst(10);
-//        testDeque.addFirst(15);
-//        testDeque.addFirst(5);
+        testDeque.addFirst(10);
+        testDeque.addFirst(15);
         testDeque.addLast(200);
         testDeque.addLast(250);
-        testDeque.addLast(300);
+        
+        testDeque.removeLast();
+        testDeque.removeLast();
         testDeque.removeFirst();
-//        testDeque.addFirst(0);
+        testDeque.removeLast();
+                System.out.println(testDeque.isEmpty());
+
                                
         Iterator<Integer> itr = testDeque.iterator();
 //        System.out.println(itr.next());
