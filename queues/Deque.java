@@ -178,16 +178,20 @@ public class Deque<Item> implements Iterable<Item> {
         testDeque.addLast(200);
         testDeque.addLast(250);
         
-        testDeque.removeLast();
-        testDeque.removeLast();
-        testDeque.removeFirst();
-        testDeque.removeLast();
-                System.out.println(testDeque.isEmpty());
+//        testDeque.removeLast();
+//        testDeque.removeLast();
+//        testDeque.removeFirst();
+//        testDeque.removeLast();
+//        System.out.println(testDeque.isEmpty());
 
-                               
+        // Testing iterator              
         Iterator<Integer> itr = testDeque.iterator();
 //        System.out.println(itr.next());
+//        System.out.println(itr.next());
 
+        for (Integer item : testDeque) {
+            System.out.println(item.toString());
+        }
 
     
     }   // unit testing
