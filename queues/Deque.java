@@ -100,14 +100,14 @@ public class Deque<Item> implements Iterable<Item> {
         System.out.print("Calling removeFirst (same as pop in a stack).");
         if (isEmpty()) throw new NoSuchElementException("Stack underflow");
         
-//      Node currentFirst = first;        // grab current first
+//      Node currentFirst = first;  // grab current first
         Item item = first.item;  // save item to return
       
       if (size() == 1) {
          first = null;
          last = null;
       } else {
-       first = first.next;            // delete first node, set first node to next node in list
+       first = first.next;    // delete first node, set first node to next node in list
       first.previous = null; // set new firsts previous to null
       }
      
@@ -116,23 +116,7 @@ public class Deque<Item> implements Iterable<Item> {
       System.out.println(" Removed " + item.toString() + " from the FRONT of the deque");
       System.out.println("'first' is now " + first.item.toString() + " and last is " + last.item.toString());
       return item;     
-       
-        
-//
-//        Node node = this.first; // grab first node 
-//        if (this.size() == 1) { // if size is one set first and last to null
-//            this.first = null;
-//            this.last = null;
-//        } else {
-//            this.first.next.previous = null;
-//            this.first = this.first.next;
-//        }
-//        n--;
-//        node.next = null;
-//       System.out.println(" Removed " + node.item.toString() + " from the FRONT of the deque");
-//       System.out.println("'first' is now " + first.item.toString() + " and last is " + last.item.toString());
-//        return node.item;
-//    
+      
         
     }  
     
