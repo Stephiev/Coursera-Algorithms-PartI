@@ -45,11 +45,13 @@ public class Deque<Item> implements Iterable<Item> {
             System.out.println("'first' went from null");
         }
         
-        if (last != null) {
+        
+          if (last != null) {
             System.out.println("'last' went from " + last.item.toString());
         } else {
             System.out.println("'last' went from null");
         }
+        
         
          // If empty last and first are the same
          if (isEmpty()) {
@@ -57,12 +59,13 @@ public class Deque<Item> implements Iterable<Item> {
             last = first;
         } else {
         
-            Node oldfirst = first; // grabbing the oldfirst
-            first = new Node(item);   // creating new first
-            first.next = oldfirst;  // setting the next of the new first to the oldfirst
+            Node oldfirst = first;     // grabbing the oldfirst
+            first = new Node(item);    // creating new first
+            first.next = oldfirst;     // setting the next of the new first to the oldfirst
             oldfirst.previous = first; // setting previous of the oldfirst to the new first
         }
-        n++;
+
+         n++;
 
        
         System.out.println(" to FIRST " + first.item.toString());
@@ -72,24 +75,33 @@ public class Deque<Item> implements Iterable<Item> {
 //   same as add(e) in a queue
         System.out.println("Calling addLast (same as add(e) in a queue). Adding " + item.toString() + " to the END of the deque");
           if (last != null) {
-            System.out.print("'last' went from " + first.item.toString());
+            System.out.print("'last' went from " + last.item.toString());
         } else {
             System.out.print("'last' went from null");
-        }
-        Node oldlast = last;
-        last = new Node(item);
-        last.item = item;
-        last.next = null;
-        if (isEmpty()) {
-            first = last;
+        } 
+       // if it's empty, first and last are the same
+       if (isEmpty()) {
+          last = new Node(item);
+          first = last;
         } else {
-          oldlast.next = last;
+                
+             Node newLast = new Node(item); // create new last to be added to end of deque
+             last.next = newLast;  // set current lasts next to new last
+             newLast.previous = last; // set new lasts previous to current last
+            last = newLast;  // set current last to new last
         }
 
+     
         n++;
         System.out.println(" to " + last.item.toString());
-    
-    }           // add the item to the end
+//        System.out.println(" FIRST IS " + first.item.toString());
+ 
+        
+    }
+
+        
+        
+              // add the item to the end
     public Item removeFirst() { // remove and return the item from the front
         // same as pop in a stack
         System.out.print("Calling removeFirst (same as pop in a stack).");
@@ -145,12 +157,13 @@ public class Deque<Item> implements Iterable<Item> {
     
     public static void main(String[] args) {
         Deque<Integer> testDeque = new Deque<Integer>();
-        testDeque.addFirst(10);
-        testDeque.addFirst(15);
-        testDeque.addFirst(5);
-//        testDeque.removeFirst();
-//        System.out.println(first);
-//        testDeque.addLast(200);
+//        testDeque.addFirst(10);
+//        testDeque.addFirst(15);
+//        testDeque.addFirst(5);
+        testDeque.addLast(200);
+        testDeque.addLast(250);
+        testDeque.addLast(300);
+//        testDeque.addFirst(0);
                                
         Iterator<Integer> itr = testDeque.iterator();
 //        System.out.println(itr.next());
