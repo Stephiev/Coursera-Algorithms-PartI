@@ -30,7 +30,7 @@ public class Deque<Item> implements Iterable<Item> {
         Node(Item item) {
             this.item = item;
             this.previous = null; // the first item will have previous as null
-            this.next = null;  // the last item will have next as null
+            this.next = null;     // the last item will have next as null
         }
     }
     
@@ -74,9 +74,9 @@ public class Deque<Item> implements Iterable<Item> {
         else {
                 
             Node newLast = new Node(item); // create new last to be added to end of deque
-            last.next = newLast;  // set current lasts next to new last
-            newLast.previous = last; // set new lasts previous to current last
-            last = newLast;  // set current last to new last
+            last.next = newLast;           // set current lasts next to new last
+            newLast.previous = last;       // set new lasts previous to current last
+            last = newLast;                // set current last to new last
         }
         n++;  
     }
@@ -110,8 +110,8 @@ public class Deque<Item> implements Iterable<Item> {
             last = null;
         }
         else {
-            last = last.previous;    // Set current last to second to last
-            last.next = null; // set new lasts next to null
+            last = last.previous; // Set current last to second to last
+            last.next = null;     // set new lasts next to null
         }
         n--;       
         return item;
