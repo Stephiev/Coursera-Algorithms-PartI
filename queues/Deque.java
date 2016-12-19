@@ -40,6 +40,7 @@ public class Deque<Item> implements Iterable<Item> {
     // add the item to the front
     public void addFirst(Item item) {  
         // same as a stack push
+        if (item == null){throw new NullPointerException(); }
         System.out.println("Calling addFirst (same as push in a stack). Adding " + item.toString() + " to the FRONT of the deque");
         if (first != null) {
             System.out.println("'first' went from " + first.item.toString());
@@ -72,6 +73,7 @@ public class Deque<Item> implements Iterable<Item> {
     // add the item to the end
     public void addLast(Item item) {
     // same as add(e) in a queue
+        if (item == null){throw new NullPointerException(); }
         System.out.println("Calling addLast (same as add(e) in a queue). Adding " + item.toString() + " to the END of the deque");
           if (last != null) {
             System.out.print("'last' went from " + last.item.toString());
@@ -159,7 +161,7 @@ public class Deque<Item> implements Iterable<Item> {
 
         public Item next() {
             if (current == null) {  // !this.hasNext()) {
-                throw new java.util.NoSuchElementException();
+                throw new NoSuchElementException();
             }
             Item item = current.item;
             current = current.next;
@@ -171,12 +173,15 @@ public class Deque<Item> implements Iterable<Item> {
         }
     }
     
+    // unit testing
     public static void main(String[] args) {
         Deque<Integer> testDeque = new Deque<Integer>();
         testDeque.addFirst(10);
         testDeque.addFirst(15);
         testDeque.addLast(200);
         testDeque.addLast(250);
+//        testDeque.addLast(null);
+//        testDeque.addFirst(null);
         
 //        testDeque.removeLast();
 //        testDeque.removeLast();
@@ -188,13 +193,14 @@ public class Deque<Item> implements Iterable<Item> {
         Iterator<Integer> itr = testDeque.iterator();
 //        System.out.println(itr.next());
 //        System.out.println(itr.next());
+//        itr.remove();
 
         for (Integer item : testDeque) {
             System.out.println(item.toString());
         }
 
     
-    }   // unit testing
+    }   
 }
 
 
