@@ -114,13 +114,16 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         q.enqueue("Mouse");
         q.enqueue("Horse");
         
-        System.out.println(q.dequeue());
-        System.out.println(q.dequeue());
-        System.out.println(q.dequeue());
-        System.out.println(q.dequeue());
+//        System.out.println(q.dequeue());
+//        System.out.println(q.dequeue());
+//        System.out.println(q.dequeue());
+//        System.out.println(q.dequeue());
 
         
-//        Iterator<String> itr = q.iterator();
+        Iterator<String> itr = q.iterator();
+         for (int i = 0; i < 4; i++) {
+            System.out.println(q.iterator().next());
+        }
 
 //         for (String string : q) {
 //            System.out.println(string);
