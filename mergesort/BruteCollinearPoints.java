@@ -23,11 +23,13 @@ public class BruteCollinearPoints {
     
     // finds all line segments containing 4 points
     public BruteCollinearPoints(Point[] points) {
+        Arrays.sort(points); 
+        repeatedPoints(points);
+        double epsilon = 0.00001;
         double pqSlope;
         double prSlope;
         double psSlope;
         ArrayList<LineSegment> lineSegments = new ArrayList<LineSegment>();
-        Arrays.sort(points); 
         
         for (int p = 0; p < points.length - 3; p++) { // -3 since we're looking at 4 points at a time
             for (int q = p + 1; q < points.length - 2; q++) { // q is always the one right next to p
@@ -36,7 +38,8 @@ public class BruteCollinearPoints {
                         pqSlope = points[p].slopeTo(points[q]);
                         prSlope = points[p].slopeTo(points[r]);
                         psSlope = points[p].slopeTo(points[s]);
-                        if (pqSlope == prSlope && pqSlope == psSlope) {
+                        // Comparing floats
+                        if (Math.abs(pqSlope - prSlope) < epsilon && Math.abs(pqSlope - psSlope) < epsilon) {
                             lineSegments.add(new LineSegment(points[p], points[s]));      
                         }
                     }
@@ -53,8 +56,21 @@ public class BruteCollinearPoints {
     
     // the line segments
     public LineSegment[] segments()   {
-        return allLineSegments; 
+        // From findbugs
+//      Returns a reference to the mutable object stored in the instance variable 'allLineSegments',
+//      which exposes the internal representation of the class 'BruteCollinearPoints'. Instead, create 
+//      a defensive copy of the object referenced by 'allLineSegments' and return the cop
+        return Arrays.copyOf(allLineSegments, allLineSegments.length); 
     }            
+    
+    // Since the array is ordered already, only need to check neighbors
+    public void repeatedPoints(Point[] points) {
+        for(int j = 0; j < points.length - 1; j++){
+            if (points[j].compareTo(points[j + 1]) == 0){
+                throw new IllegalArgumentException();
+            }
+        }
+    }
     
     public static void main(String[] args) {
         
