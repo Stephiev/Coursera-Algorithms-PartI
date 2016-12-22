@@ -1,33 +1,24 @@
-//public class Point implements Comparable<Point> {
-//   public Point(int x, int y)                         // constructs the point (x, y)
-//
-//   public   void draw()                               // draws this point
-//   public   void drawTo(Point that)                   // draws the line segment from this point to that point
-//   public String toString()                           // string representation
-//
-//   public               int compareTo(Point that)     // compare two points by y-coordinates, breaking ties by x-coordinates
-//   public            double slopeTo(Point that)       // the slope between this point and that point
-//   public Comparator<Point> slopeOrder()              // compare two points by slopes they make with this point
-//}
-
 /******************************************************************************
- *  Compilation:  javac Point.java
- *  Execution:    java Point
- *  Dependencies: none
- *  
- *  An immutable data type for points in the plane.
- *  For use on Coursera, Algorithms Part I programming assignment.
- *
- ******************************************************************************/
+  *  Stephanie Vasquez-Soltero
+  *  December 21st, 2016
+  * 
+  *  Compilation:  javac Point.java
+  *  Execution:    java Point
+  *  Dependencies: none
+  * 
+  *  An immutable data type for points in the plane.
+  *  For use on Coursera, Algorithms Part I programming assignment.
+  *
+  ******************************************************************************/
 
 import java.util.Comparator;
 import edu.princeton.cs.algs4.StdDraw;
 
 public class Point implements Comparable<Point> {
-
+    
     private final int x;     // x-coordinate of this point
     private final int y;     // y-coordinate of this point
-
+    
     /**
      * Initializes a new point.
      *
@@ -39,7 +30,7 @@ public class Point implements Comparable<Point> {
         this.x = x;
         this.y = y;
     }
-
+    
     /**
      * Draws this point to standard draw.
      */
@@ -47,7 +38,7 @@ public class Point implements Comparable<Point> {
         /* DO NOT MODIFY */
         StdDraw.point(x, y);
     }
-
+    
     /**
      * Draws the line segment between this point and the specified point
      * to standard draw.
@@ -58,7 +49,7 @@ public class Point implements Comparable<Point> {
         /* DO NOT MODIFY */
         StdDraw.line(this.x, this.y, that.x, that.y);
     }
-
+    
     /**
      * Returns the slope between this point and the specified point.
      * Formally, if the two points are (x0, y0) and (x1, y1), then the slope
@@ -89,9 +80,9 @@ public class Point implements Comparable<Point> {
         
         // Else return slope
         return (double) (that.y - this.y) / (that.x - this.x);
-
+        
     }
-
+    
     /**
      * Compares two points by y-coordinate, breaking ties by x-coordinate.
      * Formally, the invoking point (x0, y0) is less than the argument point
@@ -110,13 +101,13 @@ public class Point implements Comparable<Point> {
         
         if (differenceInPoints == 0) {
             // return +/- integer depending on which x is greater
-            return differenceInPoints = x - that.x;
+            differenceInPoints = x - that.x;
         }
         // Will return positive if y is greater and neg if that.y is greater
         return differenceInPoints;
     }
-
-
+    
+    
     /**
      * Compares two points by the slope they make with this point.
      * The slope is defined as in the slopeTo() method.
@@ -126,25 +117,25 @@ public class Point implements Comparable<Point> {
     public Comparator<Point> slopeOrder() {
         /* YOUR CODE HERE */
         return new Comparator<Point>() {
-        @Override
-        public int compare(Point a, Point b) {
-            Double slopeA = slopeTo(a);
-            Double slopeB = slopeTo(b);
-            
-            if (slopeA == slopeB){
-                return 0;
+            @Override
+            public int compare(Point a, Point b) {
+                double slopeA = slopeTo(a);
+                double slopeB = slopeTo(b);
+                
+                if (slopeA == slopeB) {
+                    return 0;
+                }
+                
+                if (slopeA < slopeB) {
+                    return -1;
+                }
+                
+                return 1;
             }
-            
-            if (slopeA < slopeB){
-                return -1;
-            }
-            
-            return 1;
-        }
-    };
+        };
     }
-
-
+    
+    
     /**
      * Returns a string representation of this point.
      * This method is provide for debugging;
@@ -156,7 +147,7 @@ public class Point implements Comparable<Point> {
         /* DO NOT MODIFY */
         return "(" + x + ", " + y + ")";
     }
-
+    
     /**
      * Unit tests the Point data type.
      */
