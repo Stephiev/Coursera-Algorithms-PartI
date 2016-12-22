@@ -106,13 +106,14 @@ public class Point implements Comparable<Point> {
      */
     public int compareTo(Point that) {
         /* YOUR CODE HERE */
-        if (y == that.y && x == that.x) {
-            return 0;
+        int differenceInPoints = y - that.y;
+        
+        if (differenceInPoints == 0) {
+            // return +/- integer depending on which x is greater
+            return differenceInPoints = x - that.x;
         }
-        if (y < that.y || (y == that.y && x < that.x)) {
-            return -1;
-        }
-        return 1;      
+        // Will return positive if y is greater and neg if that.y is greater
+        return differenceInPoints    
     }
 
 
