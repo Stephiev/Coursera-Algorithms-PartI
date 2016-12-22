@@ -113,7 +113,7 @@ public class Point implements Comparable<Point> {
             return differenceInPoints = x - that.x;
         }
         // Will return positive if y is greater and neg if that.y is greater
-        return differenceInPoints    
+        return differenceInPoints;
     }
 
 

@@ -24,12 +24,17 @@ public class BruteCollinearPoints {
                    
                    for (int p = 0; p < points.length - 3; p++) { // -3 since we're looking at 4 points at a time
                        for (int q = p + 1; q < points.length - 2; q++) { // q is always the one right next to p
-                           for (int r = p + 2; r < points.length - 1; r++) {
-                               for (int s = p + 3; s < points.length; s++) {
+                           for (int r = q + 1; r < points.length - 1; r++) { // cannot be p + x because they are changing at different times
+                               for (int s = r + 1; s < points.length; s++) {
                                    pqSlope = points[p].slopeTo(points[q]);
                                    prSlope = points[p].slopeTo(points[r]);
                                    psSlope = points[p].slopeTo(points[s]);
+                                  
+
                                    if (pqSlope == prSlope && pqSlope == psSlope) {
+                                       StdOut.println("pqSlope " + pqSlope);
+                                       StdOut.println("prSlope " + prSlope);
+                                       StdOut.println("psSlope " + psSlope);
                                        lineSegments.add(new LineSegment(points[p], points[s]));      
                                    }
                                }
@@ -38,12 +43,12 @@ public class BruteCollinearPoints {
                    }
                    
              
-              
-              amountOfSegments = lineSegments.size();
+              allLineSegments = lineSegments.toArray(new LineSegment[lineSegments.size()]);
+
           
           }   // finds all line segments containing 4 points
   public int numberOfSegments() {
-      return amountOfSegments;
+      return allLineSegments.length;
   }   // the number of line segments
    public LineSegment[] segments()   {
        return allLineSegments; // convert array list to array?
@@ -72,11 +77,11 @@ public class BruteCollinearPoints {
 
     // print and draw the line segments
     BruteCollinearPoints collinear = new BruteCollinearPoints(points);
-//    for (LineSegment segment : collinear.segments()) {
-//        StdOut.println(segment);
-//        segment.draw();
-//    }
-//    StdDraw.show();
+    for (LineSegment segment : collinear.segments()) {
+        StdOut.println(segment);
+        segment.draw();
+    }
+    StdDraw.show();
 }
     
     /*************************************************************************
