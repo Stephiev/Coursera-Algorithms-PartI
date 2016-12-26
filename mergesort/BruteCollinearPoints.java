@@ -65,8 +65,8 @@ public class BruteCollinearPoints {
     
     // Since the array is ordered already, only need to check neighbors
     public void repeatedPoints(Point[] points) {
-        for(int j = 0; j < points.length - 1; j++){
-            if (points[j].compareTo(points[j + 1]) == 0){
+        for (int j = 0; j < points.length - 1; j++) {
+            if (points[j].compareTo(points[j + 1]) == 0) {
                 throw new IllegalArgumentException();
             }
         }
