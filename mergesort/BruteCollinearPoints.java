@@ -31,6 +31,10 @@ public class BruteCollinearPoints {
         double psSlope;
         ArrayList<LineSegment> lineSegments = new ArrayList<LineSegment>();
         
+//        First, you can iterate through all combinations of 4 points (N choose 4) instead of all 4 tuples (N^4), 
+//        saving a factor of 4! = 24. Second, you don't need to consider whether 4 points are collinear if you
+//        already know that the first 3 are not collinear; this can save you a factor of N on typical inputs.
+        
         for (int p = 0; p < points.length - 3; p++) { // -3 since we're looking at 4 points at a time
             for (int q = p + 1; q < points.length - 2; q++) { // q is always the one right next to p
                 for (int r = q + 1; r < points.length - 1; r++) { // cannot be p + x because they are changing at different times

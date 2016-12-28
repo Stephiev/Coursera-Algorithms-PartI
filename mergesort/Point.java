@@ -64,9 +64,10 @@ public class Point implements Comparable<Point> {
     public double slopeTo(Point that) {
         /* YOUR CODE HERE */
         
-        // If the y coordinates are the same (vertical line), return -infinity
+
         if (that.y == y) {
             if (that.x == x) {
+                // If the points ate equal
                 return Double.NEGATIVE_INFINITY;
             }
             // If the y coordinates are the same (horizontal line), return +0
